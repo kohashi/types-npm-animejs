@@ -1,7 +1,7 @@
 
 
 declare var anime: AnimeStatic;
-declare var animejs: AnimeStatic;
+export = anime;
 
 
 /** Query selector string. Same as jQuery. */
@@ -43,7 +43,7 @@ declare interface AnimeStatic {
    *  Create a path Function for motion path animation.
    * Accepts either a DOM node or CSS selector.
    */
-  path(path, percent: number) : (prop: string)=> {el: SVGPathElement[], property: string, totalLength:number};
+  path(path, percent?: number) : (prop: string)=> FunctionBasedValues;
 
 
   /**
@@ -92,7 +92,7 @@ interface Targets{
    *   | `Object`      | `{prop1: 100, prop2: 200}`
    *   | `Array`       | `['div', '.item', domNode]`
   */
-  targets : target;
+  targets? : target;
 }
 
 
@@ -139,7 +139,7 @@ interface AnimatableProperties {
  */
 declare type propertyValue = number | string;
 declare type FunctionBasedValues = (el: Element, index?: number, targetsLength?: number) => propertyValue;
-declare type FromToValues = [propertyValue, propertyValue];
+declare type FromToValues = [propertyValue | FunctionBasedValues, propertyValue | FunctionBasedValues];
 declare type propertyValues = propertyValue | FromToValues | FunctionBasedValues;
 
 
@@ -155,7 +155,7 @@ declare type propertyValues = propertyValue | FromToValues | FunctionBasedValues
  *  | elasticity | `500` | `number`, `function` | Range [0 - 1000]
  *  | round | `false` | `number`, `boolean`, `function` | Power of 10
  */
-export type PropertyParameters =
+declare type PropertyParameters =
 {
   value: propertyValues,
   duration: FunctionBasedValues | number,
@@ -177,7 +177,7 @@ declare type animatableProperty = propertyValues | PropertyParameters | Keyframe
 /**
  * Parameters relative to the animation to specify the direction, the number of loops or autoplay.
  */
-export type  animationParameters = {
+declare type  animationParameters = {
     loop: boolean | number;
     direction: 'normal'|'reverse'|'alternate';
     autoplay: boolean;
@@ -230,7 +230,7 @@ interface animationCallbacks {
     run: animCallback;
 }
 
-interface TimelineInput extends AnimInput, instanceParams{
+interface TimelineInput extends animationParameters{
 
 }
 
@@ -269,7 +269,7 @@ interface Easings {
         easeOutSine(h: any): any;
     }
 
-export type Easing =
+declare type Easing =
   'easeInSine' |
   'easeOutSine' |
   'easeInOutSine' |
