@@ -68,7 +68,7 @@ declare interface AnimeStatic {
   /**
    * Create a timeline to synchronise other Anime instances.
    */
-  timeline(params? :TimelineInput) : TimelineInstance ;
+  timeline(params? :AnimationParameters) : TimelineInstance ;
 
 
   /**
@@ -155,8 +155,7 @@ declare type propertyValues = propertyValue | FromToValues | FunctionBasedValues
  *  | elasticity | `500` | `number`, `function` | Range [0 - 1000]
  *  | round | `false` | `number`, `boolean`, `function` | Power of 10
  */
-declare type PropertyParameters =
-{
+declare interface PropertyParameters {
   value: propertyValues,
   duration: FunctionBasedValues | number,
   delay?: FunctionBasedValues | number,
@@ -177,10 +176,10 @@ declare type animatableProperty = propertyValues | PropertyParameters | Keyframe
 /**
  * Parameters relative to the animation to specify the direction, the number of loops or autoplay.
  */
-declare type  animationParameters = {
-    loop: boolean | number;
-    direction: 'normal'|'reverse'|'alternate';
-    autoplay: boolean;
+declare interface  AnimationParameters  {
+    loop?: boolean | number;
+    direction?: 'normal'|'reverse'|'alternate';
+    autoplay?: boolean;
 }
 
 
@@ -192,7 +191,7 @@ declare type  animationParameters = {
  * Instance
  */
 interface AnimInstance extends
-  animationCallbacks, animationParameters, instanceParams {
+  animationCallbacks, AnimationParameters, instanceParams {
     /** timeline children */
     children: AnimInstance[],
     animatables: FunctionBasedValues[],
@@ -223,6 +222,7 @@ interface instanceParams {
 
 
 declare type animCallback = (AnimInstance)=>{} ;
+
 interface animationCallbacks {
     update: animCallback;
     begin: animCallback;
@@ -230,9 +230,6 @@ interface animationCallbacks {
     run: animCallback;
 }
 
-interface TimelineInput extends animationParameters{
-
-}
 
 interface TimelineInstance extends AnimInstance {
   add(params: AnimInput);
