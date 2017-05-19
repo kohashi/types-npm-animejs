@@ -107,26 +107,26 @@ interface Targets{
  */
 interface AnimatableProperties {
   // Transformations
-  translateX: animatableProperty;
-  translateY: animatableProperty;
-  rotate: animatableProperty;
-  scale: animatableProperty;
+  translateX?: animatableProperty;
+  translateY?: animatableProperty;
+  rotate?: animatableProperty;
+  scale?: animatableProperty;
 
   // CSS
-  opacity: animatableProperty;
-  color: animatableProperty;
-  backgroundColor: animatableProperty;
-  left: animatableProperty;
-  top: animatableProperty;
-  border: animatableProperty;
+  opacity?: animatableProperty;
+  color?: animatableProperty;
+  backgroundColor?: animatableProperty;
+  left?: animatableProperty;
+  top?: animatableProperty;
+  border?: animatableProperty;
 
   // SVG
-  points: animatableProperty;
-  strokeDashoffset: animatableProperty;
+  points?: animatableProperty;
+  strokeDashoffset?: animatableProperty;
 
   // DOM
-  value: animatableProperty;
-  round: number; // Remove decimals by rounding the value
+  value?: animatableProperty;
+  round?: number; // Remove decimals by rounding the value
 
 
   // Custom Props
@@ -158,11 +158,11 @@ declare type propertyValues = propertyValue | FromToValues | FunctionBasedValues
 export type PropertyParameters =
 {
   value: propertyValues,
-  duration?: FunctionBasedValues | number,
-  delay: FunctionBasedValues | number,
-  elasticity : FunctionBasedValues | number,
+  duration: FunctionBasedValues | number,
+  delay?: FunctionBasedValues | number,
+  elasticity? : FunctionBasedValues | number,
   easing?: Easing | Function
-  round : number | boolean | Function
+  round? : number | boolean | Function
 }
 
 /**
