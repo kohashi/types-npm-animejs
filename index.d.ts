@@ -1,7 +1,7 @@
 
 
-export declare var anime: AnimeStatic;
-
+declare var anime: AnimeStatic;
+export = anime;
 
 
 /** Query selector string. Same as jQuery. */
@@ -105,27 +105,27 @@ interface Targets{
  * | DOM attributes | Any DOM attributes containing numerical values
  * | SVG attributes | Any SVG attributes containing numerical values
  */
-export interface AnimatableProperties {
+interface AnimatableProperties {
   // Transformations
-  translateX?: AnimatableProperty;
-  translateY?: AnimatableProperty;
-  rotate?: AnimatableProperty;
-  scale?: AnimatableProperty;
+  translateX?: animatableProperty;
+  translateY?: animatableProperty;
+  rotate?: animatableProperty;
+  scale?: animatableProperty;
 
   // CSS
-  opacity?: AnimatableProperty;
-  color?: AnimatableProperty;
-  backgroundColor?: AnimatableProperty;
-  left?: AnimatableProperty;
-  top?: AnimatableProperty;
-  border?: AnimatableProperty;
+  opacity?: animatableProperty;
+  color?: animatableProperty;
+  backgroundColor?: animatableProperty;
+  left?: animatableProperty;
+  top?: animatableProperty;
+  border?: animatableProperty;
 
   // SVG
-  points?: AnimatableProperty;
-  strokeDashoffset?: AnimatableProperty;
+  points?: animatableProperty;
+  strokeDashoffset?: animatableProperty;
 
   // DOM
-  value?: AnimatableProperty;
+  value?: animatableProperty;
   round?: number; // Remove decimals by rounding the value
 
 
@@ -140,7 +140,7 @@ export interface AnimatableProperties {
 declare type propertyValue = number | string;
 declare type FunctionBasedValues = (el: Element, index?: number, targetsLength?: number) => propertyValue;
 declare type FromToValues = [propertyValue | FunctionBasedValues, propertyValue | FunctionBasedValues];
-declare type PropertyValues = propertyValue | FromToValues | FunctionBasedValues;
+declare type propertyValues = propertyValue | FromToValues | FunctionBasedValues;
 
 
 /**
@@ -156,7 +156,7 @@ declare type PropertyValues = propertyValue | FromToValues | FunctionBasedValues
  *  | round | `false` | `number`, `boolean`, `function` | Power of 10
  */
 declare interface PropertyParameters {
-  value: PropertyValues,
+  value: propertyValues,
   duration: FunctionBasedValues | number,
   delay?: FunctionBasedValues | number,
   elasticity? : FunctionBasedValues | number,
@@ -168,15 +168,15 @@ declare interface PropertyParameters {
  * Keyframes are defined using an Array of property Object.
  * Instance's duration is divided by the number of keyframes of each properties if not specified.
  */
-export declare type Keyframes = PropertyParameters[];
+declare type Keyframes = PropertyParameters[];
 
-export declare type AnimatableProperty = PropertyValues | PropertyParameters | Keyframes;
+declare type animatableProperty = propertyValues | PropertyParameters | Keyframes;
 
 
 /**
  * Parameters relative to the animation to specify the direction, the number of loops or autoplay.
  */
-export declare interface  AnimationParameters  {
+declare interface  AnimationParameters  {
     loop?: boolean | number;
     direction?: 'normal'|'reverse'|'alternate';
     autoplay?: boolean;
@@ -191,7 +191,7 @@ export declare interface  AnimationParameters  {
  * Instance
  */
 interface AnimInstance extends
-  AnimationCallbacks, AnimationParameters, instanceParams {
+  animationCallbacks, AnimationParameters, instanceParams {
     /** timeline children */
     children: AnimInstance[],
     animatables: FunctionBasedValues[],
@@ -221,13 +221,13 @@ interface instanceParams {
 }
 
 
-declare type AnimationCallback = (AnimInstance)=>{} ;
+declare type animCallback = (AnimInstance)=>{} ;
 
-interface AnimationCallbacks {
-    update: AnimationCallback;
-    begin: AnimationCallback;
-    complete: AnimationCallback;
-    run: AnimationCallback;
+interface animationCallbacks {
+    update: animCallback;
+    begin: animCallback;
+    complete: animCallback;
+    run: animCallback;
 }
 
 
