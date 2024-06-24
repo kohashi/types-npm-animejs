@@ -1,3 +1,9 @@
+
+# Depelecated! : use DefinitelyTyped hosted version of animejs types. https://www.npmjs.com/package/@types/animejs
+
+
+------
+
 # Typed animejs  [![Build Status](https://travis-ci.org/types/animejs.svg?branch=master)](https://travis-ci.org/types/animejs)
 
 
