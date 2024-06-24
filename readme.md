@@ -1,5 +1,5 @@
 
-# Depelecated! : use DefinitelyTyped hosted version of animejs types. https://www.npmjs.com/package/@types/animejs
+# Deprecated! : use DefinitelyTyped hosted version of animejs types. https://www.npmjs.com/package/@types/animejs
 
 
 ------
